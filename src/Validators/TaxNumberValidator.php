@@ -2,7 +2,7 @@
 
 namespace App\Validators;
 
-use App\Entity\Taxes;
+use App\Entity\Tax;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -18,7 +18,7 @@ class TaxNumberValidator extends ConstraintValidator
 
     public function validate($value, Constraint $constraint): void
     {
-        $repository = $this->entityManager->getRepository(Taxes::class);
+        $repository = $this->entityManager->getRepository(Tax::class);
 
         $countryCode = substr($value, 0, 2);
 

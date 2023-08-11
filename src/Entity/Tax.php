@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\TaxesRepository;
+use App\Repository\TaxRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TaxesRepository::class)]
-class Taxes
+#[ORM\Entity(repositoryClass: TaxRepository::class)]
+class Tax
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

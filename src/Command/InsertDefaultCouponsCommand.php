@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\Coupons;
+use App\Entity\Coupon;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +27,7 @@ class InsertDefaultCouponsCommand extends AbstractCommand
         $data = $this->getCoupons();
 
         foreach ($data as $item) {
-            $coupon = new Coupons();
+            $coupon = new Coupon();
 
             $coupon->setPercent($item['percent']);
             $coupon->setDescription($item['description']);

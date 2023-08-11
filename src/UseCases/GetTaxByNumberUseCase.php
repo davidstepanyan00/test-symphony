@@ -2,7 +2,7 @@
 
 namespace App\UseCases;
 
-use App\Entity\Taxes;
+use App\Entity\Tax;
 use Doctrine\ORM\EntityManagerInterface;
 
 class GetTaxByNumberUseCase
@@ -12,9 +12,9 @@ class GetTaxByNumberUseCase
     ) {
     }
 
-    public function run(string $taxNumber): Taxes
+    public function run(string $taxNumber): Tax
     {
-        $repository = $this->entityManager->getRepository(Taxes::class);
+        $repository = $this->entityManager->getRepository(Tax::class);
 
         $code = substr($taxNumber,0,2);
 

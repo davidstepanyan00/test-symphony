@@ -2,7 +2,7 @@
 
 namespace App\Validators;
 
-use App\Entity\Coupons;
+use App\Entity\Coupon;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -17,7 +17,7 @@ class CouponCodeValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint): void
     {
         if (isset($value)) {
-            $repository = $this->entityManager->getRepository(Coupons::class);
+            $repository = $this->entityManager->getRepository(Coupon::class);
 
             $entity = $repository->findOneBy(['code' => $value]);
 

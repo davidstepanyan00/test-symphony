@@ -2,7 +2,7 @@
 
 namespace App\UseCases;
 
-use App\Entity\Coupons;
+use App\Entity\Coupon;
 use Doctrine\ORM\EntityManagerInterface;
 
 class GetCouponByCodeUseCase
@@ -12,9 +12,9 @@ class GetCouponByCodeUseCase
     ) {
     }
 
-    public function run(string $couponCode): Coupons
+    public function run(string $couponCode): Coupon
     {
-        $repository = $this->entityManager->getRepository(Coupons::class);
+        $repository = $this->entityManager->getRepository(Coupon::class);
 
         return $repository->findOneBy(['code' => $couponCode]);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\Taxes;
+use App\Entity\Tax;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +27,7 @@ class InsertDefaultTaxesCommand extends AbstractCommand
         $data = $this->getTaxes();
 
         foreach ($data as $item) {
-            $tax = new Taxes();
+            $tax = new Tax();
 
             $tax->setCountry($item['country']);
             $tax->setPercent($item['percent']);
