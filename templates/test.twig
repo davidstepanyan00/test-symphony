@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+
+    <style>
+        /* Center the container */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full viewport height */
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; justify-content: center; align-items: center">
+    <h4>Questions</h4>
+    <button style="margin-left: 5px">Submit Test</button>
+    <button style="margin-left: 5px" disabled>New Test</button>
+</div>
+<div class="center-container">
+    <ul>
+        {% for question in questions %}
+            <li>
+                <strong>{{ question.description }}</strong>
+                <ol>
+                    {% for index, answer in question.answers %}
+                        <ol>
+                            <dl>
+                                <dt> <label><input type="checkbox">{{index+1}}. {{answer.value}}</label> </dt>
+                            </dl>
+                        </ol>
+                    {% endfor %}
+                </ol>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
