@@ -45,7 +45,7 @@ class SubmitQuestionsAction
         ];
     }
 
-    private function checkAnswerIsRight(array $answers, array $givenAnswer): bool
+    private function checkAnswerIsRight(array $answers, array $givenAnswers): bool
     {
         $filteredRightAnswers = [];
 
@@ -54,11 +54,17 @@ class SubmitQuestionsAction
              * @var  Answer $answer
              */
             if ($answer->isIsRight()) {
-                $filteredRightAnswers[] = $answer->getIndex();
+                $filteredRightAnswers[] = (int)$answer->getIndex();
             }
         }
 
-        return empty(array_diff($filteredRightAnswers, $givenAnswer));
+        foreach ($givenAnswers as $givenAnswer) {
+            if (!in_array($givenAnswer, $filteredRightAnswers)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private function saveTestResult(int $wrongsCount, int $rightsCount): void

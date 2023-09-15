@@ -37,7 +37,7 @@ class InsertQuestionsWithAnswersCommand extends AbstractCommand
                 $answer->setValue($answerItem['value']);
                 $answer->setIsRight($answerItem['is_right']);
                 $answer->setIndex($answerItem['index']);
-                $answer->setQuestionId($question->getId());
+                $answer->setQuestion($question);
 
                 $this->entityManager->persist($answer);
             }

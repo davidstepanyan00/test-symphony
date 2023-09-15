@@ -26,7 +26,6 @@ class Answer
     private ?int $question_id = null;
 
 
-
     #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'answers')]
     private Question $question;
 
