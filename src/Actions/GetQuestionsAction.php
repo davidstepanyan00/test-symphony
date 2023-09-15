@@ -20,10 +20,8 @@ class GetQuestionsAction
     {
         $questions = $this->questionRepository->getAllQuestionsWithAnswers();
 
-        // Randomize the order of questions
         shuffle($questions);
 
-        // Randomize the order of answers for each question
         foreach ($questions as $question) {
             $answers = $question->getAnswers()->toArray();
             shuffle($answers);
