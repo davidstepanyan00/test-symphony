@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+    <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div class="center-container">
+    <form method="POST" action="/submit" id="questionnaire-form" data-question-count="{{ questions|length }}">
+        <h4 style="text-align: center">Test:</h4>
+        <button style="margin-left: 5px" type="submit">Submit Test</button>
+
+        <ul>
+            {% for question in questions %}
+                <li>
+                    <strong>{{ question.description }}</strong>
+                    <ol>
+                        <label for="answers{{ question.id }}[]">
+                            {% for index, answer in question.answers %}
+                                <li>
+                                        <input type="checkbox" name="answers{{ question.id }}[]" value="{{ answer.index }}">
+                                        {{ answer.value }}
+                                </li>
+                            {% endfor %}
+                        </label>
+                    </ol>
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+</div>
+
+<script>
+    document.getElementById('questionnaire-form').addEventListener('submit', function (e) {
+        const questionCount = parseInt(this.getAttribute('data-question-count'));
+        let atLeastOneAnswerSelected = true;
+
+        for (let i = 1; i <= questionCount; i++) {
+            const checkboxes = document.querySelectorAll(`input[name^="answers${i}"]:checked`);
+            if (checkboxes.length === 0) {
+                atLeastOneAnswerSelected = false;
+                break;
+            }
+        }
+
+        if (!atLeastOneAnswerSelected) {
+            e.preventDefault();
+            alert('Please select at least one answer for each question.');
+        }
+    });
+</script>
+</body>
+</html>
